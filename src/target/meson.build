@@ -71,6 +71,7 @@ if is_firmware_build
 		'riscv32': 'RISC-V 32-bit support',
 		'riscv64': 'RISC-V 64-bit support',
 		'avr': '8-bit AVR support',
+		'atxmega': 'ATXMega support',
 		'efm': 'Energy Micro parts',
 		'hc32': 'HC32 parts',
 		'lpc': 'LPC series parts',
@@ -149,6 +150,11 @@ target_riscv64 = declare_dependency(
 target_avr = declare_dependency(
 	sources: files('avr_pdi.c'),
 	compile_args: ['-DENABLE_AVR=1'],
+)
+
+target_atxmega = declare_dependency(
+	sources: files('atxmega.c'),
+	dependencies: target_avr,
 )
 
 target_efm = declare_dependency(
@@ -290,6 +296,7 @@ libbmd_target_deps = [
 	target_riscv64,
 	target_avr,
 	# Enable all targets for libbmd
+	target_atxmega,
 	target_efm,
 	target_hc32,
 	target_lpc,

@@ -124,6 +124,7 @@ endif
 ifeq ($(ENABLE_AVR), 1)
 CFLAGS += -DENABLE_AVR
 SRC +=        \
+	atxmega.c \
 	avr_pdi.c
 endif
 
